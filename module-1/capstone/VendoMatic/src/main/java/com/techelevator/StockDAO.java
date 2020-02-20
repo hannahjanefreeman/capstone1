@@ -1,10 +1,11 @@
-package com.techelevator;
+ package com.techelevator;
 
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class StockDAO {
 	
@@ -20,9 +21,15 @@ public class StockDAO {
 	
 	public void getStockInfoFromFile() throws FileNotFoundException {
 		Scanner scanFile = new Scanner(getItemStockFile());
-		while(scanFile.nextLine() != null) {
-			
-		}
+		String fileLine = scanFile.nextLine();
+		
+		while(fileLine != null) {	
+			String[] lineContents = fileLine.split("[|]");
+			String itemType = lineContents[lineContents.length-1];
+			if(itemType.equals("Chip")) {
+				lineContents[]  
+			}
+		} 
 		
 	}
 	
