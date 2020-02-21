@@ -22,6 +22,7 @@ public class VendoMaticCLI {
 		
 		while(true) {
 			StockDAO stockList = new StockDAO();
+			BankClass userWallet = new BankClass(System.in, System.out);
 			System.out.println(MAIN_MENU_ITEM_DISPLAY + "\n");
 			stockList.getStockInfoFromFile();
 			stockList.getProductList();
@@ -31,6 +32,10 @@ public class VendoMaticCLI {
 			
 			if(choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
+				if(choice.equals(SUB_MENU_OPTION_FEED)) {
+					userWallet.getCashFromUser();
+					choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
+				}
 			}
 			if(choice.contentEquals(MAIN_MENU_OPTION_EXIT)) {
 				System.exit(1);

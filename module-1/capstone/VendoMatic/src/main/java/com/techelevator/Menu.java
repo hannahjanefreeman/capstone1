@@ -49,6 +49,8 @@ public class Menu {
 			int optionNum = i + 1;
 			System.out.println(optionNum + ") " + object[i]);
 		}
+		out.print("\nPlease choose an option >>> ");
+		out.flush();
 	}
 	
 	

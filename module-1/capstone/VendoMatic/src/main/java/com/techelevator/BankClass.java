@@ -21,14 +21,21 @@ public class BankClass {
 		this.wallet = 0.0;
 	}
 	
-	public double getCashFromUser(double userCash) {
-		wallet = Double.parseDouble(in.nextLine());
-		if (wallet < 0.0) {
-			System.out.println("Not valid");
+	public double getCashFromUser() {
+		System.out.print("Enter Amount: ");
+		double walletAmount = Double.parseDouble(in.nextLine());
+		if (walletAmount < 0.0) {
+			System.out.println("Not valid, Wallet equals zero");
+			walletAmount = 0.0;
+			return walletAmount;
 		} 
-		if (wallet > 10.0) {
-			System.out.println("Can not accept amount");
+		if (walletAmount > 10.0) {
+			System.out.println("Can not accept amount, Wallet equals zero");
+			walletAmount = 0.0;
+			return walletAmount;
 		}
-		return wallet;
+		out.println("Current amount: " + walletAmount);
+		out.flush();
+		return wallet += walletAmount;
 	}
 }
