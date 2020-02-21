@@ -14,8 +14,19 @@ public class VendingItem {
 		this.uniqueID = uniqueID;
 	}
 	
+
+		
+	
 	@Override
 	public String toString() {
-		return this.uniqueID + "\t" + this.name + "\t"  + this.price + "\t" + this.quantity + " Remaining";
+		String tabs;
+		if (this.name.length() >= 18) {
+			tabs = "\t";
+		} else if (this.name.length() <= 7) {
+			tabs = "\t\t\t";
+		} else {
+			tabs = "\t\t";
+		}
+		return this.uniqueID + "\t" + this.name + tabs + "$" + this.price + "\t" + this.quantity + " Remaining";
 	}
 }
