@@ -10,6 +10,7 @@ public class BankClass {
 	private PrintWriter out;
 	private Scanner in;
 	private double wallet;
+	private boolean trigger;
 	
 	public double getWallet() {
 		return wallet;
