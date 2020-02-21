@@ -14,5 +14,8 @@ public class VendingItem {
 		this.uniqueID = uniqueID;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return this.uniqueID + "\t" + this.name + "\t"  + this.price + "\t" + this.quantity + " Remaining";
+	}
 }

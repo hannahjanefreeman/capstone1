@@ -24,17 +24,6 @@ public class StockDAO {
 	public StockDAO() {
 		this.products = new ArrayList<VendingItem>();
 	}
-	
-	 public void displayStock() throws FileNotFoundException {
-		 
-		 try(Scanner scanFile = new Scanner(getItemStockFile())) {
-			 
-			 while(scanFile.hasNextLine()) {
-				 String fileLine = scanFile.nextLine();
-				 System.out.println(fileLine);
-			 }
-		 }
-	 }
 		
 	
 	public void getStockInfoFromFile() throws FileNotFoundException {
@@ -73,7 +62,7 @@ public class StockDAO {
 	
 	public void getProductList() {
 		for(VendingItem item : products) {
-			System.out.println(item);
+			System.out.println(item.toString());
 		}
 	}
 	

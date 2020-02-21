@@ -6,9 +6,6 @@ public class ChipClass extends VendingItem {
 		super(name, price, quantity, uniqueID);
 		
 	}
-	
-	
-
 
 
 }
