@@ -44,11 +44,14 @@ public class Menu {
 	
 	
 	private void displayMenuOptions(Object[] object) {
+		out.println();
 		for(int i = 0; i < object.length; i++) {
 			int optionNum = i + 1;
 			System.out.println(optionNum + ") " + object[i]);
 		}
 	}
+	
+	
 	
 	
 	
