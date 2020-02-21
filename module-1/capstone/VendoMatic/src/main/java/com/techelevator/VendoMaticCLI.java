@@ -13,12 +13,16 @@ public class VendoMaticCLI {
 	
 	public void run() {
 		while(true) {
+			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
+			
 			StockDAO stockList = new StockDAO();
 			
 			System.out.println(MAIN_MENU_ITEM_DISPLAY + "\n");
 			stockList.getProductList();
 			
-			if()
+			if(choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
+				
+			}
 		}
 	}
 	
