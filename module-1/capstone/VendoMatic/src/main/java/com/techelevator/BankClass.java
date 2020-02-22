@@ -64,5 +64,7 @@ public class BankClass {
 		return this.wallet;
 	}
 	
+	
+	
 
 }
