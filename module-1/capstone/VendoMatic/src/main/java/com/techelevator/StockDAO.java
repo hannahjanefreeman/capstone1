@@ -20,12 +20,7 @@ public class StockDAO {
 	public int getMaxItemQuantity() {
 		return this.maxItemQuantity;
 	}
-	
-	public StockDAO() {
-		this.products = new ArrayList<VendingItem>();
-	}
 		
-	
 	public void getStockInfoFromFile() throws FileNotFoundException {
 		try(Scanner scanFile = new Scanner(getItemStockFile())) {
 			
@@ -59,11 +54,22 @@ public class StockDAO {
 		}
 	}
 	
-	
 	public void getProductList() {
 		for(VendingItem item : products) {
 			System.out.println(item.toString());
 		}
 	}
 	
+	//CTOR////////////////////////////////////////////////
+	public StockDAO() {
+		this.products = new ArrayList<VendingItem>();
+	}
+	
+	public void itemSelection() {
+		try(Scanner userSelection = new Scanner(System.in)) {
+			System.out.println("What would you like? ");
+			String itemSelection = userSelection.nextLine();
+			
+		}
+	}
 }

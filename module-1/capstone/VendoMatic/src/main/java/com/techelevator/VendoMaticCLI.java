@@ -14,8 +14,6 @@ public class VendoMaticCLI {
 			SUB_MENU_OPTION_TRANSACTION };
 	
 	
-	
-	//private static StockDAO stock = new StockDAO();
 	private Menu menu;
 	
 	public void run() throws FileNotFoundException {
@@ -35,13 +33,15 @@ public class VendoMaticCLI {
 				
 				if(choice.equals(SUB_MENU_OPTION_FEED)) {
 					userWallet.getCashFromUser();
+					System.out.println(MAIN_MENU_ITEM_DISPLAY + "\n");
 					stockList.getProductList();
 					System.out.println();
 					choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
-				
-				}else if(choice.equals(SUB_MENU_OPTION_SELECT)) {
-					
-				}else if(choice.equals(SUB_MENU_OPTION_TRANSACTION)) {
+				}
+				if(choice.equals(SUB_MENU_OPTION_SELECT)) {
+					stockList.itemSelection();
+				}
+				if(choice.equals(SUB_MENU_OPTION_TRANSACTION)) {
 					
 				}
 			}
@@ -51,20 +51,10 @@ public class VendoMaticCLI {
 		}
 	}
 	
-	//LOOPING THROUGH THE SUBLIST TO ALLOW MULTIPLE INPUT AND CHOICES
-	public void subMenuOptions() {
-		
-		
-		while(true) {
-			
-		
-		}
-	}
 	
 	public VendoMaticCLI(Menu menu) {
 		this.menu = menu;
 	}
-	
 	
 	
 	public static void main(String[] args) throws FileNotFoundException {
