@@ -10,7 +10,6 @@ public class BankClass {
 	private PrintWriter out;
 	private Scanner in;
 	private double wallet;
-	private boolean trigger;
 	
 	public double getWallet() {
 		return wallet;
@@ -44,8 +43,8 @@ public class BankClass {
 			
 			if (this.wallet > 10.0) {
 				System.out.println("Wallet amount too large");
+				this.wallet -= walletAmount;
 				System.out.println("Current amount: " + this.wallet);
-				return this.wallet -= walletAmount;
 				
 			}
 			

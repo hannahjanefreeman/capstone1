@@ -32,8 +32,13 @@ public class VendoMaticCLI {
 			
 			if(choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
+				
 				if(choice.equals(SUB_MENU_OPTION_FEED)) {
 					userWallet.getCashFromUser();
+					stockList.getProductList();
+					System.out.println();
+					choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
+				
 				}else if(choice.equals(SUB_MENU_OPTION_SELECT)) {
 					
 				}else if(choice.equals(SUB_MENU_OPTION_TRANSACTION)) {
