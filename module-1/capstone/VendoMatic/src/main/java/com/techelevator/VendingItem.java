@@ -27,6 +27,6 @@ public class VendingItem {
 		} else {
 			tabs = "\t\t";
 		}
-		return this.uniqueID + "\t" + this.name + tabs + "$" + this.price + "\t" + this.quantity + " Remaining";
+		return this.uniqueID + "\t" + this.name + tabs + "$" + this.price + "\t" + this.quantity + " In Stock";
 	}
 }

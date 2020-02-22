@@ -23,20 +23,47 @@ public class BankClass {
 	}
 	
 	public double getCashFromUser() {
-		System.out.print("Enter Amount: ");
-		double walletAmount = Double.parseDouble(in.nextLine());
-		if (walletAmount < 0.0) {
-			System.out.println("Not valid, Wallet equals zero");
-			walletAmount = 0.0;
-			return walletAmount;
-		} 
-		if (walletAmount > 10.0) {
-			System.out.println("Can not accept amount, Wallet equals zero");
-			walletAmount = 0.0;
-			return walletAmount;
+		double walletAmount = 0;
+		boolean flag = true;
+		
+		while(flag) {
+			System.out.print("Enter Amount: ");
+			
+			walletAmount = Double.parseDouble(in.nextLine());
+			if(walletAmount > 0.0 && walletAmount <= 10.00) {
+				this.wallet += walletAmount;
+			} else {
+				System.out.println("Not Accepted");
+			}
+		
+			if (this.wallet < 0.0) {
+				System.out.println("Can't have negative balance");
+				this.wallet = 0.0;
+				return this.wallet;
+			} 
+			
+			if (this.wallet > 10.0) {
+				System.out.println("Wallet amount too large");
+				System.out.println("Current amount: " + this.wallet);
+				return this.wallet -= walletAmount;
+				
+			}
+			
+			System.out.println("Do you want to insert more? (yes/no)");
+			String userInput = in.nextLine().toLowerCase();
+			
+			if(userInput.equals("yes")) {
+				System.out.println("Current amount: " + this.wallet);
+			} else {
+				flag = false;
+			}
+			
 		}
-		out.println("Current amount: " + walletAmount);
+		
+		out.println("Current amount: " + this.wallet);
 		out.flush();
-		return wallet += walletAmount;
+		return this.wallet;
 	}
+	
+
 }
