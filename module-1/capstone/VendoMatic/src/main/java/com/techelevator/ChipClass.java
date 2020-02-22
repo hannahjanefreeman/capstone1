@@ -7,5 +7,7 @@ public class ChipClass extends VendingItem {
 		
 	}
 
-
+	public String getNoise() {
+		return "Crunch Crunch, Yum!";
+	}
 }

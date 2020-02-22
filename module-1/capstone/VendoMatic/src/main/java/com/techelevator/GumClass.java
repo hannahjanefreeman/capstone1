@@ -7,4 +7,7 @@ public class GumClass extends VendingItem {
 		// TODO Auto-generated constructor stub
 	}
 
+	public String getNoise() {
+		return "Chew Chew, Yum!";
+	}
 }

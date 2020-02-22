@@ -6,5 +6,9 @@ public class DrinkClass extends VendingItem {
 		super(name, price, quantity, uniqueID);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public String getNoise() {
+		return "Glug Glug, Yum!";
+	}
 
 }
