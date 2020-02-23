@@ -66,10 +66,15 @@ public class StockDAO {
 	}
 	
 	public void itemSelection() {
+		
 		try(Scanner userSelection = new Scanner(System.in)) {
 			System.out.println("What would you like? ");
-			String itemSelection = userSelection.nextLine();
-			
+			String itemSelection = userSelection.nextLine().toUpperCase();
+			for(int i = 0; i < products.size(); i++) {
+				if(itemSelection.equals(products.get(i).uniqueID)) {
+					System.out.println(products.get(i).makeNoise());
+				}
+			}
 		}
 	}
 }

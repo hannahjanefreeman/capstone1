@@ -1,6 +1,6 @@
 package com.techelevator;
 
-public class VendingItem {
+public abstract class VendingItem {
 	
 	protected String name;
 	protected String price;
@@ -14,8 +14,9 @@ public class VendingItem {
 		this.uniqueID = uniqueID;
 	}
 	
-
 		
+	
+	public abstract String makeNoise();
 	
 	@Override
 	public String toString() {
@@ -29,4 +30,5 @@ public class VendingItem {
 		}
 		return this.uniqueID + "\t" + this.name + tabs + "$" + this.price + "\t" + this.quantity + " In Stock";
 	}
+	
 }

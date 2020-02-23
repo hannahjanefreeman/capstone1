@@ -7,7 +7,8 @@ public class CandyClass extends VendingItem {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public String getNoise() {
+	@Override
+	public String makeNoise() {
 		return "Munch munch, Yum!";
 	}
 

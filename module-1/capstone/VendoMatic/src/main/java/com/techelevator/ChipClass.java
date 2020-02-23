@@ -6,8 +6,9 @@ public class ChipClass extends VendingItem {
 		super(name, price, quantity, uniqueID);
 		
 	}
-
-	public String getNoise() {
+	
+	@Override
+	public String makeNoise() {
 		return "Crunch Crunch, Yum!";
 	}
 }
