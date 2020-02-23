@@ -14,9 +14,14 @@ public abstract class VendingItem {
 		this.uniqueID = uniqueID;
 	}
 	
-		
+	public void checkQuantity() {
+		if(this.quantity == 0) {
+			System.out.println("SOLD OUT");
+		}
+	}
 	
 	public abstract String makeNoise();
+	
 	
 	@Override
 	public String toString() {

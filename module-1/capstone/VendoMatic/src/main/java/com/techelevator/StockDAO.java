@@ -75,6 +75,7 @@ public class StockDAO {
 					System.out.println(products.get(i).name + " " +
 										products.get(i).price);
 					System.out.println(products.get(i).makeNoise());
+					products.get(i).quantity -= 1;
 				}
 			}
 		}

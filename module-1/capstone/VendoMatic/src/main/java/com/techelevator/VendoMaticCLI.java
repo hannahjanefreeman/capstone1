@@ -15,7 +15,8 @@ public class VendoMaticCLI {
 	
 	
 	private Menu menu;
-	
+
+	////METHOD THAT RUNS PROGRAM/////////////////////	
 	public void run() throws FileNotFoundException {
 		
 		while(true) {
@@ -40,6 +41,8 @@ public class VendoMaticCLI {
 				}
 				if(choice.equals(SUB_MENU_OPTION_SELECT)) {
 					stockList.itemSelection();
+					stockList.getProductList();
+					stockList.costOfItem(userWallet.getWallet());
 				}
 				if(choice.equals(SUB_MENU_OPTION_TRANSACTION)) {
 					
@@ -50,18 +53,15 @@ public class VendoMaticCLI {
 			}
 		}
 	}
-	
-	
+
+	////CTOR///////////////////////////////////
 	public VendoMaticCLI(Menu menu) {
 		this.menu = menu;
 	}
-	
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		Menu menu = new Menu(System.in, System.out);
 		VendoMaticCLI vendingMachine = new VendoMaticCLI(menu);
 		vendingMachine.run();
-		
 	}
-
 }
