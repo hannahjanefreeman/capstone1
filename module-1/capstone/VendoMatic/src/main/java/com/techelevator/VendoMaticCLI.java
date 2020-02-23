@@ -40,9 +40,8 @@ public class VendoMaticCLI {
 					choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
 				}
 				if(choice.equals(SUB_MENU_OPTION_SELECT)) {
-					stockList.itemSelection();
+					stockList.itemSelection(userWallet.getWallet());
 					stockList.getProductList();
-					stockList.costOfItem(userWallet.getWallet());
 				}
 				if(choice.equals(SUB_MENU_OPTION_TRANSACTION)) {
 					

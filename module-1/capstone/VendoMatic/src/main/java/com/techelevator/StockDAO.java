@@ -65,23 +65,21 @@ public class StockDAO {
 		this.products = new ArrayList<VendingItem>();
 	}
 	 
-	public void itemSelection() {
+	public void itemSelection(double userWallet) {
 		
 		try(Scanner userSelection = new Scanner(System.in)) {
 			System.out.print("What would you like? (ex. A1) ");
 			String itemSelection = userSelection.nextLine().toUpperCase();
 			for(int i = 0; i < products.size(); i++) {
 				if(itemSelection.equals(products.get(i).uniqueID)) {
+					userWallet -= Double.parseDouble(products.get(i).price);
 					System.out.println(products.get(i).name + " " +
-										products.get(i).price);
+										products.get(i).price + " " +
+										userWallet);
 					System.out.println(products.get(i).makeNoise());
 					products.get(i).quantity -= 1;
 				}
 			}
 		}
-	}
-	
-	public double costOfItem(double userWallet) {
-		return 0.0;
 	}
 }
