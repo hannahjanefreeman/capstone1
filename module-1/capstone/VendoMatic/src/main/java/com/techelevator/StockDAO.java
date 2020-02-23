@@ -75,13 +75,32 @@ public class StockDAO {
 			
 			for(int i = 0; i < products.size(); i++) {
 				if(itemSelection.equals(products.get(i).uniqueID)) {
+					userWallet -= Double.parseDouble(products.get(i).price);
+					products.get(i).quantity -= 1;
 					System.out.println(products.get(i).name + " " +
 										products.get(i).price + " " +
 										userWallet);
 					System.out.println(products.get(i).makeNoise());
-					products.get(i).quantity -= 1;
+					
 				}
 			}
 		}
+	}
+	
+	public void finishTransaction(double userWallet) {
+		double changeDue = userWallet;
+		int change = (int) (Math.ceil(changeDue * 100));
+		int quarters = Math.round((int)change/25);
+		change = change % 25;
+		int dimes = Math.round((int)change/10);
+		change = change % 10;
+		int nickels = Math.round((int)change/5);
+		change = change % 5;
+		int pennies = Math.round((int)change/1);
+		
+		System.out.println("Quarters " + quarters);
+		System.out.println("Dimes " + dimes);
+		System.out.println("Nickels " + nickels); 
+		System.out.println("pennies " + pennies);
 	}
 }

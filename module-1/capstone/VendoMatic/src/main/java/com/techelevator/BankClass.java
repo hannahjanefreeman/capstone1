@@ -64,10 +64,11 @@ public class BankClass {
 		return getWallet();
 	}
 	
-	public void checkUserWalletAmount() {
+	public double checkUserWalletAmount() {
 		if(getWallet() == 0.0) {
 			System.out.println("You Broke, feed me money boi");
 		}
+		return getWallet();
 	}
 	
 	
