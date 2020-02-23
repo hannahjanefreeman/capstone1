@@ -15,7 +15,7 @@ public class LogClass {
 	private File log = new File ("C:\\Users\\Student\\workspace\\java-module-1-capstone-team-4\\module-1\\capstone\\java\\log.txt");
 
 		
-	public void transacationLog(String uniqueID, String name, String price, double wallet) throws FileNotFoundException {
+	public void transacationLog(String uniqueID, String itemSelection, String price, double wallet) throws FileNotFoundException {
 		
 		PrintWriter logJawn = new PrintWriter(new FileOutputStream(log), true);
 		
@@ -25,7 +25,7 @@ public class LogClass {
 			String printDate = date.toString();
 			String printTime = time.toString();
 			
-			logJawn.println(printDate + " " + printTime + " " + name + " $" + price + " $" + wallet);
+			logJawn.println(printDate + " " + printTime + " " + itemSelection + " $" + price + " $" + wallet);
 		}
 
 }
