@@ -20,6 +20,11 @@ public class StockDAO {
 	public int getMaxItemQuantity() {
 		return this.maxItemQuantity;
 	}
+	
+	//CTOR////////////////////////////////////////////////
+	public StockDAO() {
+		this.products = new ArrayList<VendingItem>();
+	}
 		
 	public void getStockInfoFromFile() throws FileNotFoundException {
 		try(Scanner scanFile = new Scanner(getItemStockFile())) {
@@ -60,19 +65,16 @@ public class StockDAO {
 		}
 	}
 	
-	//CTOR////////////////////////////////////////////////
-	public StockDAO() {
-		this.products = new ArrayList<VendingItem>();
-	}
 	 
 	public void itemSelection(double userWallet) {
 		
 		try(Scanner userSelection = new Scanner(System.in)) {
+			
 			System.out.print("What would you like? (ex. A1) ");
 			String itemSelection = userSelection.nextLine().toUpperCase();
+			
 			for(int i = 0; i < products.size(); i++) {
 				if(itemSelection.equals(products.get(i).uniqueID)) {
-					userWallet -= Double.parseDouble(products.get(i).price);
 					System.out.println(products.get(i).name + " " +
 										products.get(i).price + " " +
 										userWallet);

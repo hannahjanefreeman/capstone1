@@ -38,30 +38,36 @@ public class BankClass {
 			if (this.wallet < 0.0) {
 				System.out.println("Can't have negative balance");
 				this.wallet = 0.0;
-				return this.wallet;
+				return getWallet();
 			} 
 			
 			if (this.wallet > 10.0) {
 				System.out.println("Wallet amount too large");
 				this.wallet -= walletAmount;
-				System.out.println("Current amount: " + this.wallet);
+				System.out.println("Current amount: " + getWallet());
 				
 			}
 			
-			System.out.println("Do you want to insert more? (yes/no)");
+			System.out.print("Do you want to insert more? (yes/no) ");
 			String userInput = in.nextLine().toLowerCase();
 			
 			if(userInput.equals("yes")) {
-				System.out.println("Current amount: " + this.wallet);
+				System.out.println("Current amount: " + getWallet());
 			} else {
 				flag = false;
 			}
 			
 		}
 		
-		out.println("Current amount: " + this.wallet);
+		out.println("Current amount: " + getWallet());
 		out.flush();
-		return this.wallet;
+		return getWallet();
+	}
+	
+	public void checkUserWalletAmount() {
+		if(getWallet() == 0.0) {
+			System.out.println("You Broke, feed me money boi");
+		}
 	}
 	
 	

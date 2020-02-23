@@ -9,9 +9,9 @@ public class VendoMaticCLI {
 	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT };
 	private static final String SUB_MENU_OPTION_FEED = "Feed Money";
 	private static final String SUB_MENU_OPTION_SELECT = "Select Product";
-	private static final String SUB_MENU_OPTION_TRANSACTION = "Finish Transaction";
+	private static final String SUB_MENU_OPTION_FINISH = "Finish Transaction";
 	private static final String[] SUB_MENU_OPTIONS = { SUB_MENU_OPTION_FEED, SUB_MENU_OPTION_SELECT, 
-			SUB_MENU_OPTION_TRANSACTION };
+			SUB_MENU_OPTION_FINISH };
 	
 	
 	private Menu menu;
@@ -40,10 +40,22 @@ public class VendoMaticCLI {
 					choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
 				}
 				if(choice.equals(SUB_MENU_OPTION_SELECT)) {
-					stockList.itemSelection(userWallet.getWallet());
-					stockList.getProductList();
+					userWallet.checkUserWalletAmount();
+					choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
+					if(choice.equals(SUB_MENU_OPTION_FEED)) {
+						userWallet.getCashFromUser();
+						System.out.println(MAIN_MENU_ITEM_DISPLAY + "\n");
+						stockList.getProductList();
+						System.out.println();
+						choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
+						if(choice.equals(SUB_MENU_OPTION_SELECT)) {
+							stockList.itemSelection(userWallet.getWallet());
+							stockList.getProductList();
+							choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
+						}
+					}
 				}
-				if(choice.equals(SUB_MENU_OPTION_TRANSACTION)) {
+				if(choice.equals(SUB_MENU_OPTION_FINISH)) {
 					
 				}
 			}
