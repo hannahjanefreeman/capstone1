@@ -14,10 +14,12 @@ public class LogClass {
 	
 	private File log = new File ("C:\\Users\\Student\\workspace\\java-module-1-capstone-team-4\\module-1\\capstone\\java", "log.txt");
 
+	public LogClass() {
 		
-	public void transacationLog(String uniqueID, String itemSelection, String price, double wallet) throws FileNotFoundException {
-		
-		try(PrintWriter logJawn = new PrintWriter(log)) {
+	}
+	
+	public void transacationLog(String itemSelection, double price, double wallet) throws FileNotFoundException {
+		try(PrintWriter logJawn = new PrintWriter(new FileOutputStream(log, true))) {
 			LocalDate date = LocalDate.now();
 			LocalTime time = LocalTime.now();
 			
