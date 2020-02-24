@@ -44,11 +44,9 @@ public class VendoMaticCLI {
 				}
 				if(choice.equals(SUB_MENU_OPTION_FINISH)) {
 					stockList.finishTransaction(userWallet.getWallet());
-<<<<<<< HEAD
+
 					choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
-				
-=======
->>>>>>> 39615e2422b375edfd6f5fce765d740351f78c42
+
 				}
 			}
 			if(choice.contentEquals(MAIN_MENU_OPTION_EXIT)) {
