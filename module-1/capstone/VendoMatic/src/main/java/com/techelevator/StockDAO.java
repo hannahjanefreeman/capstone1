@@ -14,6 +14,8 @@ public class StockDAO {
 	private int maxItemQuantity = 5;
 	private Scanner in;
 	private List<VendingItem> products;
+	private String userSelectedItem;
+	private double userSelectedItemPrice;
 	
 	public File getItemStockFile() {
 		return this.itemStockFile;
@@ -25,6 +27,14 @@ public class StockDAO {
 	
 	public List<VendingItem> getProductsList() {
 		return this.products;
+	}
+	
+	public String getUserSelectedItem() {
+		return this.userSelectedItem;
+	}
+	
+	public double getUserSelectedItemPrice() {
+		return this.userSelectedItemPrice;
 	}
 	
 	//CTOR////////////////////////////////////////////////
@@ -81,11 +91,12 @@ public class StockDAO {
 			if(itemSelection.equals(products.get(i).uniqueID)) {
 				userWallet -= Double.parseDouble(products.get(i).price);
 				products.get(i).quantity -= 1;
+				userSelectedItem = products.get(i).name;
+				userSelectedItemPrice = Double.parseDouble(products.get(i).price);
 				System.out.println(products.get(i).name + " " +
 									products.get(i).price + " " +
 									userWallet);
 				System.out.println(products.get(i).makeNoise());
-						
 			}
 		}
 		return userWallet;

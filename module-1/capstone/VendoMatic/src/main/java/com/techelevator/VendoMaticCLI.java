@@ -38,7 +38,6 @@ public class VendoMaticCLI {
 				if(choice.equals(SUB_MENU_OPTION_FEED)) {
 					userCash = userWallet.getCashFromUser();
 					System.out.println();
-					//choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
 					log.transacationLog(SUB_MENU_OPTION_FEED, userCash , userCash);
 				}
 				if(choice.equals(SUB_MENU_OPTION_SELECT)) {
@@ -46,12 +45,11 @@ public class VendoMaticCLI {
 					System.out.println();
 					updatedWallet = userWallet.checkUserWalletAmount(stockList.itemSelection
 							(userWallet.getWallet()));
-					log.transacationLog(SUB_MENU_OPTION_SELECT, userCash, updatedWallet);
+					log.transacationLog(stockList.getUserSelectedItem(), stockList.getUserSelectedItemPrice(), updatedWallet);
 					
 				}
 				if(choice.equals(SUB_MENU_OPTION_FINISH)) {
 					stockList.finishTransaction(userWallet.getWallet());
-					choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
 
 				}
 			}
