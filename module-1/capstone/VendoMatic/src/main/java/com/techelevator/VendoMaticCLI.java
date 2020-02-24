@@ -18,26 +18,26 @@ public class VendoMaticCLI {
 
 	////METHOD THAT RUNS PROGRAM/////////////////////	
 	public void run() throws FileNotFoundException {
+		StockDAO stockList = new StockDAO();
+		BankClass userWallet = new BankClass(System.in, System.out);
+		stockList.getStockInfoFromFile();
 		
 		while(true) {
-			StockDAO stockList = new StockDAO();
-			BankClass userWallet = new BankClass(System.in, System.out);
 			System.out.println(MAIN_MENU_ITEM_DISPLAY + "\n");
-			stockList.getStockInfoFromFile();
 			stockList.getProductList();
 			System.out.println();
 			
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			
 			if(choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-				String subMenuChoice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
+				choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
 				
-				if(subMenuChoice.equals(SUB_MENU_OPTION_FEED)) {
+				if(choice.equals(SUB_MENU_OPTION_FEED)) {
 					userWallet.getCashFromUser();
 					System.out.println(MAIN_MENU_ITEM_DISPLAY + "\n");
 					stockList.getProductList();
 					System.out.println();
-					subMenuChoice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
+					
 				}
 				if(choice.equals(SUB_MENU_OPTION_SELECT)) {
 						stockList.itemSelection(userWallet.getWallet());
