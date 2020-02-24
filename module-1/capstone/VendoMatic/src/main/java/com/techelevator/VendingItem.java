@@ -3,11 +3,11 @@ package com.techelevator;
 public abstract class VendingItem {
 	
 	protected String name;
-	protected String price;
+	protected double price;
 	protected int quantity;
 	protected String uniqueID;
 	
-	public VendingItem(String name, String price, int quantity, String uniqueID) {
+	public VendingItem(String name, double price, int quantity, String uniqueID) {
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;

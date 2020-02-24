@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.math.BigDecimal;
 
 public class StockDAO {
 	
@@ -15,7 +16,7 @@ public class StockDAO {
 	private Scanner in;
 	private List<VendingItem> products;
 	private String userSelectedItem;
-	private double userSelectedItemPrice;
+	private BigDecimal userSelectedItemPrice;
 	
 	public File getItemStockFile() {
 		return this.itemStockFile;
@@ -33,7 +34,7 @@ public class StockDAO {
 		return this.userSelectedItem;
 	}
 	
-	public double getUserSelectedItemPrice() {
+	public BigDecimal getUserSelectedItemPrice() {
 		return this.userSelectedItemPrice;
 	}
 	
@@ -83,16 +84,16 @@ public class StockDAO {
 	}
 	
 	 
-	public double itemSelection(double userWallet) {
+	public BigDecimal itemSelection(BigDecimal userWallet) {
 		System.out.print("What would you like? (ex. A1) ");
 		String itemSelection = in.nextLine().toUpperCase();
 				
 		for(int i = 0; i < products.size(); i++) {
 			if(itemSelection.equals(products.get(i).uniqueID)) {
-				userWallet -= Double.parseDouble(products.get(i).price);
+				userWallet = userWallet.subtract(BigDecimal.valueOf(products.get(i).price));
 				products.get(i).quantity -= 1;
 				userSelectedItem = products.get(i).name;
-				userSelectedItemPrice = Double.parseDouble(products.get(i).price);
+				userSelectedItemPrice = BigDecimal.valueOf(products.get(i).price);
 				System.out.println(products.get(i).name + " " +
 									products.get(i).price + " " +
 									userWallet);
@@ -102,14 +103,14 @@ public class StockDAO {
 		return userWallet;
 	}
 	
-	public void finishTransaction(double userWallet) {
-		double changeDue = userWallet;
-		int change = (int) (Math.ceil(changeDue * 100));
+	public void finishTransaction(BigDecimal userWallet) {
+		BigDecimal changeDue = userWallet;
+		int change = (int) (Math.ceil(changeDue * 100);
 		int quarters = Math.round((int)change/25);
 		change = change % 25;
 		int dimes = Math.round((int)change/10);
 		change = change % 10;
-		int nickels = Math.round((int)change/5);
+		int nickels = Math.round((int)change/5); 
 		change = change % 5;
 		int pennies = Math.round((int)change/1);
 		
