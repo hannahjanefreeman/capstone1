@@ -22,44 +22,33 @@ public class BankClass {
 	}
 	
 	public double getCashFromUser() {
-		double walletAmount = 0;
 		boolean flag = true;
 		
 		while(flag) {
-			System.out.print("Enter Amount: ");
-			
-			walletAmount = Double.parseDouble(in.nextLine());
-			if(walletAmount > 0.0 && walletAmount <= 10.00) {
-				this.wallet += walletAmount;
-			} else {
-				System.out.println("Not Accepted");
-			}
-		
-			if (this.wallet < 0.0) {
-				System.out.println("Can't have negative balance");
-				this.wallet = 0.0;
-				return getWallet();
+			System.out.print("Enter Amount (Up to $10): ");
+			double enteredAmount = Double.parseDouble(in.nextLine());
+			this.wallet += enteredAmount;
+			if(getWallet() > 0.0 && getWallet() <= 10.00) {
+				System.out.println("Current amount: " + "$" +getWallet());
 			} 
 			
-			if (this.wallet > 10.0) {
-				System.out.println("Wallet amount too large");
-				this.wallet -= walletAmount;
-				System.out.println("Current amount: " + getWallet());
-				
+			if(getWallet() > 10.0) {
+				this.wallet -= enteredAmount;
+				System.out.println("MAX is $10, Current amount: " + "$" +getWallet());
 			}
 			
 			System.out.print("Do you want to insert more? (yes/no) ");
 			String userInput = in.nextLine().toLowerCase();
 			
 			if(userInput.equals("yes")) {
-				System.out.println("Current amount: " + getWallet());
+				System.out.println("Current amount: " + "$" + getWallet());
 			} else {
 				flag = false;
 			}
 			
 		}
 		
-		out.println("Current amount: " + getWallet());
+		out.println("Current amount: " + "$" + getWallet());
 		out.flush();
 		return getWallet();
 	}
