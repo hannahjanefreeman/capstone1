@@ -21,7 +21,6 @@ public class VendoMaticCLI {
 		StockDAO stockList = new StockDAO(System.in);
 		BankClass userWallet = new BankClass(System.in, System.out);
 		stockList.getStockInfoFromFile();
-		userWallet.getWallet();
 		
 		while(true) {
 			System.out.println(MAIN_MENU_ITEM_DISPLAY + "\n");
