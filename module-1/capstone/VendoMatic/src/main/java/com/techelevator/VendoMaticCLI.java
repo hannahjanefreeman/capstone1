@@ -44,7 +44,6 @@ public class VendoMaticCLI {
 				}
 				if(choice.equals(SUB_MENU_OPTION_FINISH)) {
 					stockList.finishTransaction(userWallet.getWallet());
-
 					choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
 
 				}
