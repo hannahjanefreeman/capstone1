@@ -53,11 +53,11 @@ public class BankClass {
 		return getWallet();
 	}
 	
-	public double checkUserWalletAmount() {
+	public double checkUserWalletAmount(double amountRemaining) {
 		if(getWallet() == 0.0) {
-			System.out.println("You Broke, feed me money boi");
+			System.out.println("You Broke, feed me money yungboul");
 		}
-		return getWallet();
+		return this.wallet = amountRemaining;
 	}
 	
 	

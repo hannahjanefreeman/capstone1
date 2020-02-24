@@ -24,7 +24,7 @@ public class VendoMaticCLI {
 		
 		while(true) {
 			System.out.println(MAIN_MENU_ITEM_DISPLAY + "\n");
-			stockList.getProductList();
+			stockList.displayProductList();
 			System.out.println();
 			
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
@@ -35,11 +35,13 @@ public class VendoMaticCLI {
 				if(choice.equals(SUB_MENU_OPTION_FEED)) {
 					userWallet.getCashFromUser();
 					System.out.println();
+					choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
 				}
 				if(choice.equals(SUB_MENU_OPTION_SELECT)) {
-					stockList.getProductList();
+					stockList.displayProductList();
 					System.out.println();
-					stockList.itemSelection(userWallet.getWallet());
+					userWallet.checkUserWalletAmount(stockList.itemSelection
+							(userWallet.getWallet()));
 					
 				}
 				if(choice.equals(SUB_MENU_OPTION_FINISH)) {

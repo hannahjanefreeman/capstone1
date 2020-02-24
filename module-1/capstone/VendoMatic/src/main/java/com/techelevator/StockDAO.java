@@ -23,6 +23,10 @@ public class StockDAO {
 		return this.maxItemQuantity;
 	}
 	
+	public List<VendingItem> getProductsList() {
+		return this.products;
+	}
+	
 	//CTOR////////////////////////////////////////////////
 	public StockDAO(InputStream in) {
 		this.products = new ArrayList<VendingItem>();
@@ -35,7 +39,7 @@ public class StockDAO {
 			while(scanFile.hasNextLine()) {
 				String fileLine = scanFile.nextLine();
 				String[] lineContents = fileLine.split("[|]");
-				String itemType = lineContents[lineContents.length-1];
+				String itemType = lineContents[lineContents.length - 1];
 				
 				
 				if(itemType.equals("Chip")) {
@@ -62,14 +66,14 @@ public class StockDAO {
 		}
 	}
 	
-	public void getProductList() {
+	public void displayProductList() {
 		for(VendingItem item : products) {
 			System.out.println(item.toString());
 		}
 	}
 	
 	 
-	public void itemSelection(double userWallet) {
+	public double itemSelection(double userWallet) {
 		System.out.print("What would you like? (ex. A1) ");
 		String itemSelection = in.nextLine().toUpperCase();
 				
@@ -84,6 +88,7 @@ public class StockDAO {
 						
 			}
 		}
+		return userWallet;
 	}
 	
 	public void finishTransaction(double userWallet) {
@@ -97,9 +102,9 @@ public class StockDAO {
 		change = change % 5;
 		int pennies = Math.round((int)change/1);
 		
-		System.out.println("Quarters " + quarters);
-		System.out.println("Dimes " + dimes);
-		System.out.println("Nickels " + nickels); 
-		System.out.println("Pennies " + pennies);
+		System.out.print("Quarters " + quarters);
+		System.out.print(" Dimes " + dimes);
+		System.out.print(" Nickels " + nickels); 
+		System.out.print(" Pennies " + pennies);
 	}
 }
