@@ -3,6 +3,7 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ public class StockDAO {
 	
 	private File itemStockFile = new File("C:\\Users\\Student\\workspace\\java-module-1-capstone-team-4\\module-1\\capstone\\java\\vendingmachine.csv");
 	private int maxItemQuantity = 5;
+	private Scanner in;
 	private List<VendingItem> products;
 	
 	public File getItemStockFile() {
@@ -22,8 +24,9 @@ public class StockDAO {
 	}
 	
 	//CTOR////////////////////////////////////////////////
-	public StockDAO() {
+	public StockDAO(InputStream in) {
 		this.products = new ArrayList<VendingItem>();
+		this.in = new Scanner(in);
 	}
 		
 	public void getStockInfoFromFile() throws FileNotFoundException {
@@ -37,12 +40,12 @@ public class StockDAO {
 				
 				if(itemType.equals("Chip")) {
 					ChipClass chip = new ChipClass(lineContents[1], lineContents[2], 
-							getMaxItemQuantity(), lineContents[0]);
+							5, lineContents[0]);
 					products.add(chip);
 				} 
 				if(itemType.equals("Drink")) {
 					DrinkClass drink = new DrinkClass(lineContents[1], lineContents[2], 
-							getMaxItemQuantity(), lineContents[0]);
+							5, lineContents[0]);
 					products.add(drink);
 				}
 				if(itemType.equals("Gum")) {
@@ -67,22 +70,18 @@ public class StockDAO {
 	
 	 
 	public void itemSelection(double userWallet) {
-		
-		try(Scanner userSelection = new Scanner(System.in)) {
-			
-			System.out.print("What would you like? (ex. A1) ");
-			String itemSelection = userSelection.nextLine().toUpperCase();
-			
-			for(int i = 0; i < products.size(); i++) {
-				if(itemSelection.equals(products.get(i).uniqueID)) {
-					userWallet -= Double.parseDouble(products.get(i).price);
-					products.get(i).quantity -= 1;
-					System.out.println(products.get(i).name + " " +
-										products.get(i).price + " " +
-										userWallet);
-					System.out.println(products.get(i).makeNoise());
-					
-				}
+		System.out.print("What would you like? (ex. A1) ");
+		String itemSelection = in.nextLine().toUpperCase();
+				
+		for(int i = 0; i < products.size(); i++) {
+			if(itemSelection.equals(products.get(i).uniqueID)) {
+				userWallet -= Double.parseDouble(products.get(i).price);
+				products.get(i).quantity -= 1;
+				System.out.println(products.get(i).name + " " +
+									products.get(i).price + " " +
+									userWallet);
+				System.out.println(products.get(i).makeNoise());
+						
 			}
 		}
 	}

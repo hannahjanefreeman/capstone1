@@ -18,7 +18,7 @@ public class VendoMaticCLI {
 
 	////METHOD THAT RUNS PROGRAM/////////////////////	
 	public void run() throws FileNotFoundException {
-		StockDAO stockList = new StockDAO();
+		StockDAO stockList = new StockDAO(System.in);
 		BankClass userWallet = new BankClass(System.in, System.out);
 		stockList.getStockInfoFromFile();
 		
@@ -37,13 +37,13 @@ public class VendoMaticCLI {
 					System.out.println();
 				}
 				if(choice.equals(SUB_MENU_OPTION_SELECT)) {
-						stockList.itemSelection(userWallet.getWallet());
-						stockList.getProductList();
-						System.out.println();
+					stockList.getProductList();
+					System.out.println();
+					stockList.itemSelection(userWallet.getWallet());
+					
 				}
 				if(choice.equals(SUB_MENU_OPTION_FINISH)) {
 					stockList.finishTransaction(userWallet.getWallet());
-					choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
 				}
 			}
 			if(choice.contentEquals(MAIN_MENU_OPTION_EXIT)) {
