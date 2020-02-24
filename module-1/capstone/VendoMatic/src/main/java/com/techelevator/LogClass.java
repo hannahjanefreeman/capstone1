@@ -12,7 +12,7 @@ import java.time.LocalTime;
 
 public class LogClass {
 	
-	private File log = new File ("C:\\Users\\Student\\workspace\\java-module-1-capstone-team-4\\module-1\\capstone\\java", "log.txt");
+	private File log = new File ("C:\\Users\\Student\\workspace\\java-module-1-capstone-team-4\\module-1\\capstone\\VendoMatic", "log.txt");
 
 	public LogClass() {
 		
