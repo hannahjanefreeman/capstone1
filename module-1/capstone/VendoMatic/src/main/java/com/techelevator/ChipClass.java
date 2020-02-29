@@ -1,8 +1,10 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
+
 public class ChipClass extends VendingItem {
 
-	public ChipClass(String name, String price, int quantity, String uniqueID) {
+	public ChipClass(String name, BigDecimal price, int quantity, String uniqueID) {
 		super(name, price, quantity, uniqueID);
 		
 	}

@@ -2,7 +2,6 @@
 
 import java.util.Scanner;
 import java.io.File;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -50,27 +49,30 @@ public class StockDAO {
 			while(scanFile.hasNextLine()) {
 				String fileLine = scanFile.nextLine();
 				String[] lineContents = fileLine.split("[|]");
+				BigDecimal priceOfItem = BigDecimal.valueOf(Double.parseDouble
+						(lineContents[2]));
+				String uniqueId = lineContents[0];
+				String itemName = lineContents[1];
 				String itemType = lineContents[lineContents.length - 1];
 				
-				
 				if(itemType.equals("Chip")) {
-					ChipClass chip = new ChipClass(lineContents[1], lineContents[2], 
-							5, lineContents[0]);
+					ChipClass chip = new ChipClass(itemName, priceOfItem, 
+							getMaxItemQuantity(), uniqueId); 		
 					products.add(chip);
 				} 
 				if(itemType.equals("Drink")) {
-					DrinkClass drink = new DrinkClass(lineContents[1], lineContents[2], 
-							5, lineContents[0]);
+					DrinkClass drink = new DrinkClass(itemName, priceOfItem, 
+							getMaxItemQuantity(), uniqueId );
 					products.add(drink);
 				}
 				if(itemType.equals("Gum")) {
-					GumClass gum = new GumClass(lineContents[1], lineContents[2], 
-							getMaxItemQuantity(), lineContents[0]);
+					GumClass gum = new GumClass(itemName, priceOfItem, 
+							getMaxItemQuantity(), uniqueId);
 					products.add(gum);
 				}
 				if(itemType.equals("Candy")) {
-					CandyClass candy = new CandyClass(lineContents[1], lineContents[2], 
-							getMaxItemQuantity(), lineContents[0]);
+					CandyClass candy = new CandyClass(itemName, priceOfItem, 
+							getMaxItemQuantity(), uniqueId);
 					products.add(candy);
 				}
 			} 
@@ -90,33 +92,56 @@ public class StockDAO {
 				
 		for(int i = 0; i < products.size(); i++) {
 			if(itemSelection.equals(products.get(i).uniqueID)) {
-				userWallet = userWallet.subtract(BigDecimal.valueOf(products.get(i).price));
+				userWallet = userWallet.subtract(products.get(i).price);
+				
 				products.get(i).quantity -= 1;
 				userSelectedItem = products.get(i).name;
-				userSelectedItemPrice = BigDecimal.valueOf(products.get(i).price);
+				userSelectedItemPrice = products.get(i).price;
+				
 				System.out.println(products.get(i).name + " " +
 									products.get(i).price + " " +
 									userWallet);
+				
 				System.out.println(products.get(i).makeNoise());
 			}
 		}
 		return userWallet;
 	}
 	
-	public void finishTransaction(BigDecimal userWallet) {
-		BigDecimal changeDue = userWallet;
-		int change = (int) (Math.ceil(changeDue * 100);
-		int quarters = Math.round((int)change/25);
-		change = change % 25;
-		int dimes = Math.round((int)change/10);
-		change = change % 10;
-		int nickels = Math.round((int)change/5); 
-		change = change % 5;
-		int pennies = Math.round((int)change/1);
+	public BigDecimal finishTransaction(BigDecimal userWallet) {
+		final BigDecimal QUARTER = BigDecimal.valueOf(.25);
+		final BigDecimal DIME = BigDecimal.valueOf(.10);
+		final BigDecimal NICKEL = BigDecimal.valueOf(.05);
+		final BigDecimal PENNY = BigDecimal.valueOf(.01);
 		
-		System.out.print("Quarters " + quarters);
-		System.out.print(" Dimes " + dimes);
-		System.out.print(" Nickels " + nickels); 
-		System.out.print(" Pennies " + pennies);
+		int quarterCnt = 0;
+		int dimeCnt = 0;
+		int nickelCnt = 0;
+		int pennyCnt = 0;
+		
+		while(userWallet.compareTo(BigDecimal.ZERO) > 0) {
+			
+			if(userWallet.compareTo(QUARTER) >= 0) {
+				userWallet = userWallet.subtract(QUARTER);
+				quarterCnt++;
+				
+			}else if(userWallet.compareTo(DIME) >= 0) {
+				userWallet = userWallet.subtract(DIME);
+				dimeCnt++;
+			}else if(userWallet.compareTo(NICKEL) >= 0) {
+				userWallet = userWallet.subtract(NICKEL);
+				nickelCnt++;
+			}else {
+				userWallet = userWallet.subtract(PENNY);
+				pennyCnt++;
+			}
+		}
+		
+		System.out.print(quarterCnt + " Quarters ");
+		System.out.print(dimeCnt + " Dimes ");
+		System.out.print(nickelCnt + " Nickels ");
+		System.out.println(pennyCnt + " Pennies");
+		
+		return userWallet;
 	}
 }

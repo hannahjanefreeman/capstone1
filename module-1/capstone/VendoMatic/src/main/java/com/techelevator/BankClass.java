@@ -4,36 +4,41 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.math.BigDecimal;
 
 public class BankClass {
 	
 	private PrintWriter out;
 	private Scanner in;
-	private double wallet;
+	private BigDecimal wallet;
 	
-	public double getWallet() {
+	public BigDecimal getWallet() {
 		return wallet;
 	}
 
 	public BankClass(InputStream input, OutputStream output) {
 		this.out = new PrintWriter(output);
 		this.in = new Scanner(input);
-		this.wallet = 0.0;
+		this.wallet = BigDecimal.ZERO;
 	}
 	
-	public double getCashFromUser() {
+	public BigDecimal getCashFromUser() {
 		boolean flag = true;
 		
 		while(flag) {
 			System.out.print("Enter Amount (Up to $10): ");
-			double enteredAmount = Double.parseDouble(in.nextLine());
-			this.wallet += enteredAmount;
-			if(getWallet() > 0.0 && getWallet() <= 10.00) {
+			BigDecimal enteredAmount = 
+					BigDecimal.valueOf(Double.parseDouble(in.nextLine()));
+			this.wallet = getWallet().add(enteredAmount);
+			
+			if(getWallet().compareTo(BigDecimal.ZERO) >= 0 &&
+					getWallet().compareTo(BigDecimal.TEN) <= 0) {
+				
 				System.out.println("Current amount: " + "$" +getWallet());
 			} 
 			
-			if(getWallet() > 10.0) {
-				this.wallet -= enteredAmount;
+			if(getWallet().compareTo(BigDecimal.TEN) > 0) {
+				this.wallet = getWallet().subtract(enteredAmount);
 				System.out.println("MAX is $10, Current amount: " + "$" +getWallet());
 			}
 			
@@ -53,11 +58,14 @@ public class BankClass {
 		return getWallet();
 	}
 	
-	public double checkUserWalletAmount(double amountRemaining) {
-		if(getWallet() == 0.0) {
-			System.out.println("You Broke, feed me money yungboul");
+	public BigDecimal checkUserWalletAmount(BigDecimal amountRemaining) {
+		if(getWallet().equals(BigDecimal.ZERO)) {
+			this.wallet = BigDecimal.ZERO;
+			System.out.println("Current amount: " + this.wallet);
+		}else {
+			this.wallet = amountRemaining;
 		}
-		return this.wallet = amountRemaining;
+		return this.wallet;
 	}
 	
 	

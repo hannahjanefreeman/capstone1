@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 
 public class VendoMaticCLI {
 	private static final String MAIN_MENU_ITEM_DISPLAY = "******************* ITEM DISPLAY ******************";
@@ -22,13 +23,13 @@ public class VendoMaticCLI {
 		BankClass userWallet = new BankClass(System.in, System.out);
 		LogClass log = new LogClass();
 		stockList.getStockInfoFromFile();
+		BigDecimal updatedWallet = BigDecimal.ZERO;
+		BigDecimal userCash;
 		
 		while(true) {
 			System.out.println(MAIN_MENU_ITEM_DISPLAY + "\n");
 			stockList.displayProductList();
 			System.out.println();
-			double updatedWallet = 0.0;
-			double userCash = 0.0;
 			
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			
@@ -49,8 +50,10 @@ public class VendoMaticCLI {
 					
 				}
 				if(choice.equals(SUB_MENU_OPTION_FINISH)) {
-					stockList.finishTransaction(userWallet.getWallet());
-
+					BigDecimal moneyLeftOver = userWallet.getWallet();
+					updatedWallet = userWallet.checkUserWalletAmount(stockList.finishTransaction(userWallet.getWallet()));
+					log.transacationLog(SUB_MENU_OPTION_FINISH, moneyLeftOver, updatedWallet);
+					System.exit(1);
 				}
 			}
 			if(choice.contentEquals(MAIN_MENU_OPTION_EXIT)) {

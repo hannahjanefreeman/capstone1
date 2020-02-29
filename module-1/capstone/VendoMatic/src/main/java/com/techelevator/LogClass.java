@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 public class LogClass {
 	
@@ -16,7 +17,7 @@ public class LogClass {
 		
 	}
 	
-	public void transacationLog(String itemSelection, double price, double wallet) throws FileNotFoundException {
+	public void transacationLog(String itemSelection, BigDecimal price, BigDecimal wallet) throws FileNotFoundException {
 		try(PrintWriter logJawn = new PrintWriter(new FileOutputStream(log, true))) {
 			LocalDate date = LocalDate.now();
 			LocalDateTime time = LocalDateTime.now();
