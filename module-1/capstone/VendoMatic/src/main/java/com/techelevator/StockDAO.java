@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 public class StockDAO {
 	
 	private File itemStockFile = new File("C:\\Users\\Student\\workspace\\java-module-1-capstone-team-4\\module-1\\capstone\\java\\vendingmachine.csv");
-	private int maxItemQuantity = 5;
+	private String maxItemQuantity = "5";
 	private Scanner in;
 	private List<VendingItem> products;
 	private String userSelectedItem;
@@ -21,7 +21,7 @@ public class StockDAO {
 		return this.itemStockFile;
 	}
 	
-	public int getMaxItemQuantity() {
+	public String getMaxItemQuantity() {
 		return this.maxItemQuantity;
 	}
 	
@@ -91,10 +91,18 @@ public class StockDAO {
 		String itemSelection = in.nextLine().toUpperCase();
 				
 		for(int i = 0; i < products.size(); i++) {
-			if(itemSelection.equals(products.get(i).uniqueID)) {
+			
+			if(products.get(i).isSoldOut()) {
+				System.out.println("Can't purchase item, Sold Out");
+				return userWallet;
+			
+			}else if(itemSelection.equals(products.get(i).uniqueID)) {
+				
 				userWallet = userWallet.subtract(products.get(i).price);
 				
-				products.get(i).quantity -= 1;
+				int changeQuantity = Integer.parseInt(products.get(i).quantity) - 1;
+				products.get(i).quantity = String.valueOf(changeQuantity);
+				
 				userSelectedItem = products.get(i).name;
 				userSelectedItemPrice = products.get(i).price;
 				

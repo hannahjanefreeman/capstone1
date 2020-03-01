@@ -14,17 +14,18 @@ public class VendoMaticCLI {
 	private static final String[] SUB_MENU_OPTIONS = { SUB_MENU_OPTION_FEED, SUB_MENU_OPTION_SELECT, 
 			SUB_MENU_OPTION_FINISH };
 	
-	
 	private Menu menu;
 
-	////METHOD THAT RUNS PROGRAM/////////////////////	
+	//METHOD THAT RUNS PROGRAM//////////////////////
 	public void run() throws FileNotFoundException {
+		
+		//INSTANTIATE CLASSES///////////////////////
 		StockDAO stockList = new StockDAO(System.in);
 		BankClass userWallet = new BankClass(System.in, System.out);
 		LogClass log = new LogClass();
 		stockList.getStockInfoFromFile();
+		
 		BigDecimal updatedWallet = BigDecimal.ZERO;
-		BigDecimal userCash;
 		
 		while(true) {
 			System.out.println(MAIN_MENU_ITEM_DISPLAY + "\n");
@@ -37,18 +38,21 @@ public class VendoMaticCLI {
 				choice = (String) menu.getChoiceFromOptions(SUB_MENU_OPTIONS);
 				
 				if(choice.equals(SUB_MENU_OPTION_FEED)) {
-					userCash = userWallet.getCashFromUser();
+					updatedWallet = userWallet.getCashFromUser();
 					System.out.println();
-					log.transacationLog(SUB_MENU_OPTION_FEED, userCash , userCash);
+					log.transacationLog(SUB_MENU_OPTION_FEED, updatedWallet , updatedWallet);
 				}
+				
 				if(choice.equals(SUB_MENU_OPTION_SELECT)) {
 					stockList.displayProductList();
 					System.out.println();
+					userWallet.checkUserWalletAmount(updatedWallet);
 					updatedWallet = userWallet.checkUserWalletAmount(stockList.itemSelection
 							(userWallet.getWallet()));
 					log.transacationLog(stockList.getUserSelectedItem(), stockList.getUserSelectedItemPrice(), updatedWallet);
 					
 				}
+				
 				if(choice.equals(SUB_MENU_OPTION_FINISH)) {
 					BigDecimal moneyLeftOver = userWallet.getWallet();
 					updatedWallet = userWallet.checkUserWalletAmount(stockList.finishTransaction(userWallet.getWallet()));
@@ -56,13 +60,15 @@ public class VendoMaticCLI {
 					System.exit(1);
 				}
 			}
+			
 			if(choice.contentEquals(MAIN_MENU_OPTION_EXIT)) {
+				System.out.println("Thank you!");
 				System.exit(1);
 			}
 		}
 	}
 
-	////CTOR///////////////////////////////////
+	//CTOR///////////////////////////
 	public VendoMaticCLI(Menu menu) {
 		this.menu = menu;
 	}

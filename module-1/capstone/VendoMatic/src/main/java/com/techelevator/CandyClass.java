@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class CandyClass extends VendingItem {
 
-	public CandyClass(String name, BigDecimal price, int quantity, String uniqueID) {
+	public CandyClass(String name, BigDecimal price, String quantity, String uniqueID) {
 		super(name, price, quantity, uniqueID);
 	}
 	

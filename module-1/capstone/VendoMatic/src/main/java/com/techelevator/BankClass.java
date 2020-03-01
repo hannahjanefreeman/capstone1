@@ -61,7 +61,9 @@ public class BankClass {
 	public BigDecimal checkUserWalletAmount(BigDecimal amountRemaining) {
 		if(getWallet().equals(BigDecimal.ZERO)) {
 			this.wallet = BigDecimal.ZERO;
-			System.out.println("Current amount: " + this.wallet);
+			System.out.println("$" + this.wallet + " You have no money");
+			System.out.println("Thank you, Come Again!");
+			System.exit(1);
 		}else {
 			this.wallet = amountRemaining;
 		}
